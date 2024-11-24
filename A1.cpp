@@ -16,21 +16,21 @@ double monteCarloIntersection_BigRectangleArea(double x1, double y1, double r1, 
                               double y2, double r2, double x3, double y3,
                               double r3, long points_amount) {
 
-  // Границы прямоугольника, в котором лежат все три окружности точно
-  // (способ 1)
+  // Р“СЂР°РЅРёС†С‹ РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРєР°, РІ РєРѕС‚РѕСЂРѕРј Р»РµР¶Р°С‚ РІСЃРµ С‚СЂРё РѕРєСЂСѓР¶РЅРѕСЃС‚Рё С‚РѕС‡РЅРѕ
+  // (СЃРїРѕСЃРѕР± 1)
   double x_min = std::min({x1 - r1, x2 - r2, x3 - r3});
   double x_max = std::max({x1 + r1, x2 + r2, x3 + r3});
   double y_min = std::min({y1 - r1, y2 - r2, y3 - r3});
   double y_max = std::max({y1 + r1, y2 + r2, y3 + r3});
 
-  // Основные настройки для генератора
+  // РћСЃРЅРѕРІРЅС‹Рµ РЅР°СЃС‚СЂРѕР№РєРё РґР»СЏ РіРµРЅРµСЂР°С‚РѕСЂР°
   std::random_device rd; 
   std::mt19937 gen(rd());
   std::uniform_real_distribution<> dis_X(x_min, x_max);
   std::uniform_real_distribution<> dis_Y(y_min, y_max);
 
-  // Как написано в задании, M - количество попадающих точек, 
-  // N = points_amount - кол-во всех точек
+  // РљР°Рє РЅР°РїРёСЃР°РЅРѕ РІ Р·Р°РґР°РЅРёРё, M - РєРѕР»РёС‡РµСЃС‚РІРѕ РїРѕРїР°РґР°СЋС‰РёС… С‚РѕС‡РµРє, 
+  // N = points_amount - РєРѕР»-РІРѕ РІСЃРµС… С‚РѕС‡РµРє
   int M_cnt = 0;
   for (int i = 0; i < points_amount; ++i) {
     double x = dis_X(gen);
@@ -51,21 +51,21 @@ double monteCarloIntersection_SmallerRectangleArea(double x1, double y1, double 
                                                double x3, double y3, double r3,
                                                long points_amount) {
 
-  // Границы прямоугольника, который заключает в себе преимущественно только площадь необходимую нам
-  // (способ 2)
+  // Р“СЂР°РЅРёС†С‹ РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРєР°, РєРѕС‚РѕСЂС‹Р№ Р·Р°РєР»СЋС‡Р°РµС‚ РІ СЃРµР±Рµ РїСЂРµРёРјСѓС‰РµСЃС‚РІРµРЅРЅРѕ С‚РѕР»СЊРєРѕ РїР»РѕС‰Р°РґСЊ РЅРµРѕР±С…РѕРґРёРјСѓСЋ РЅР°Рј
+  // (СЃРїРѕСЃРѕР± 2)
   double x_min = 0.85;
   double x_max = 2.1;
   double y_min = 0.85;
   double y_max = 2.1;
 
-  // Основные настройки для генератора
+  // РћСЃРЅРѕРІРЅС‹Рµ РЅР°СЃС‚СЂРѕР№РєРё РґР»СЏ РіРµРЅРµСЂР°С‚РѕСЂР°
   std::random_device rd;
   std::mt19937 gen(rd());
   std::uniform_real_distribution<> dis_X(x_min, x_max);
   std::uniform_real_distribution<> dis_Y(y_min, y_max);
 
-  // Как написано в задании, M - количество попадающих точек,
-  // N = points_amount - кол-во всех точек
+  // РљР°Рє РЅР°РїРёСЃР°РЅРѕ РІ Р·Р°РґР°РЅРёРё, M - РєРѕР»РёС‡РµСЃС‚РІРѕ РїРѕРїР°РґР°СЋС‰РёС… С‚РѕС‡РµРє,
+  // N = points_amount - РєРѕР»-РІРѕ РІСЃРµС… С‚РѕС‡РµРє
   int M_cnt = 0;
   for (int i = 0; i < points_amount; ++i) {
     double x = dis_X(gen);
@@ -87,7 +87,7 @@ int main() {
   double x2 = 1.5, y2 = 2.0, r2 = (std::sqrt(5)/2.0);
   double x3 = 2.0, y3 = 1.5, r3 = (std::sqrt(5) / 2.0);
 
-  // Точное значение площади
+  // РўРѕС‡РЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РїР»РѕС‰Р°РґРё
   double exactArea = 0.944516185899465;
 
   std::vector<long> points_list;
